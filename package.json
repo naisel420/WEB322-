@@ -1,0 +1,22 @@
+{
+  "name": "web322-a3",
+  "version": "1.0.0",
+  "description": "Climate Solutions Project",
+  "main": "server.js",
+  "scripts": {
+    "tw:build": "tailwindcss -i ./public/css/tailwind.css -o ./public/css/main.css --minify",
+    "start": "node server.js",
+    "postinstall": "npm run tw:build"
+  },
+  "dependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "daisyui": "^5.0.0",
+    "express": "^4.21.2",
+    "web322-a3": "file:"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^3.4.17"
+  }
+}

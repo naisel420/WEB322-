@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+  <nav class="navbar bg-base-200 p-4">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost normal-case text-xl">Climate Solutions</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/about">About</a></li>
+        <li>
+          <details>
+            <summary>Sector</summary>
+            <ul class="p-2 bg-base-100">
+              <li><a href="/solutions/projects?sector=Land Sinks">Land Sinks</a></li>
+              <li><a href="/solutions/projects?sector=Industry">Industry</a></li>
+              <li><a href="/solutions/projects?sector=Transportation">Transportation</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-9xl font-bold">404</h1>
+        <p class="py-6 text-xl">Page Not Found</p>
+        <a href="/" class="btn btn-primary">Return Home</a>
+        <div class="mt-4 text-sm opacity-75">
+          <p id="studentInfo"></p>
+          <p id="timestamp"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Display headers from server response
+    document.getElementById('studentInfo').textContent = 
+      `${response.headers.get('X-Student-Name')} - ${response.headers.get('X-Student-ID')}`;
+    
+    document.getElementById('timestamp').textContent = 
+      `Error occurred at: ${new Date(response.headers.get('X-Timestamp')).toLocaleString()}`;
+  </script>
+</body>
+</html>

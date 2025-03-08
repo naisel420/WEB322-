@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+  <nav class="navbar bg-base-200 p-4">
+    <div class="flex-1">
+      <a href="/" class="btn btn-ghost normal-case text-xl">Climate Solutions</a>
+    </div>
+    <div class="flex-none">
+      <ul class="menu menu-horizontal px-1">
+        <li><a href="/about">About</a></li>
+        <li>
+          <details>
+            <summary>Sector</summary>
+            <ul class="p-2 bg-base-100">
+              <li><a href="/solutions/projects?sector=Land Sinks">Land Sinks</a></li>
+              <li><a href="/solutions/projects?sector=Industry">Industry</a></li>
+              <li><a href="/solutions/projects?sector=Transportation">Transportation</a></li>
+            </ul>
+          </details>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="hero min-h-[60vh] bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-2xl">
+        <h1 class="text-5xl font-bold mb-4">Sustainable Climate Solutions</h1>
+        <p class="py-6 text-xl">Exploring innovative approaches to carbon reduction and ecosystem restoration</p>
+        <a href="/solutions/projects" class="btn btn-primary btn-lg">Browse Projects</a>
+        <div class="mt-8">
+          <p class="text-sm">Naisel Varghese | Student ID: 167251222</p>
+          <p class="text-xs opacity-75">Current time: <span id="timestamp"></span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mx-auto p-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Project 1 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure class="px-4 pt-4">
+          <img src="https://images.unsplash.com/photo-1625246333195-78d9c38ad449?w=500" 
+               alt="Forest Restoration" 
+               class="rounded-xl h-48 object-cover w-full">
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Forest Restoration</h2>
+          <p>Large-scale reforestation efforts in tropical regions to sequester carbon</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/1" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure class="px-4 pt-4">
+          <img src="https://plus.unsplash.com/premium_photo-1682144786282-62202bd9f5bd?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3RlZWwlMjByZWN5Y2xpbmd8ZW58MHx8MHx8fDA%3D" 
+               alt="Steel Recycling" 
+               class="rounded-xl h-48 object-cover w-full">
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">Steel Recycling</h2>
+          <p>Circular economy solutions for industrial metal reuse and emissions reduction</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/2" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="card bg-base-100 shadow-xl">
+        <figure class="px-4 pt-4">
+          <img src="https://images.unsplash.com/photo-1663008519764-0616547c493a?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZXYlMjBpbmZyYXN0cnVjdHVyZXxlbnwwfHwwfHx8MA%3D%3D" 
+               alt="EV Infrastructure" 
+               class="rounded-xl h-48 object-cover w-full">
+        </figure>
+        <div class="card-body">
+          <h2 class="card-title">EV Infrastructure</h2>
+          <p>Nationwide network of fast-charging stations for electric vehicles</p>
+          <div class="card-actions justify-end">
+            <a href="/solutions/projects/3" class="btn btn-primary">Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Display current timestamp
+    document.getElementById('timestamp').textContent = new Date().toLocaleString();
+  </script>
+</body>
+</html>
