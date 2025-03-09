@@ -4,30 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About - Climate Solutions</title>
-  <link href="./public/css/main.css" rel="stylesheet">
+  <link href="/css/main.css" rel="stylesheet">
 </head>
 <body class="bg-base-100 text-base-content">
-  <!-- Navbar -->
-  <nav class="navbar bg-base-200 p-4">
-    <div class="flex-1">
-      <a href="/" class="btn btn-ghost normal-case text-xl">Climate Solutions</a>
-    </div>
-    <div class="flex-none">
-      <ul class="menu menu-horizontal px-1">
-        <li><a href="/about" class="active">About</a></li>
-        <li>
-          <details>
-            <summary>Sector</summary>
-            <ul class="p-2 bg-base-100">
-              <li><a href="/solutions/projects?sector=industry">Industry</a></li>
-              <li><a href="/solutions/projects?sector=energy">Energy</a></li>
-              <li><a href="/solutions/projects?sector=transport">Transport</a></li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  <!-- Include Navbar Partial -->
+  <%- include('partials/navbar', {page: '/about'}) %>
 
   <!-- Hero Section -->
   <div class="hero min-h-[50vh] bg-base-200">

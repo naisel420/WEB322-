@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects - Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+  
+  <%- include('partials/navbar', {page: '/solutions/projects'}) %>
+
+  
+  <div class="hero min-h-[50vh] bg-base-200">
+  <div class="hero-content text-center">
+  <div class="max-w-2xl">
+        <h1 class="text-5xl font-bold mb-4">Projects</h1>
+        <p class="py-6 text-xl">Explore our climate solutions projects</p>
+        <div class="flex gap-4 justify-center">
+        <a href="/solutions/projects?sector=Land Sinks" class="btn btn-primary">Land Sinks</a>
+        <a href="/solutions/projects?sector=Industry" class="btn btn-primary">Industry</a>
+        <a href="/solutions/projects?sector=Transportation" class="btn btn-primary">Transportation</a>
+        </div>
+        <div class="mt-8">
+          <p class="text-sm"><%= studentName %> | Student ID: <%= studentId %></p>
+          <p class="text-xs opacity-75">Current time: <%= timestamp.toLocaleString() %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="container mx-auto p-8">
+    <table class="table w-full">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Sector</th>
+          <th>Summary</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% projects.forEach(project => { %>
+          <tr>
+            <td><%= project.title %></td>
+            <td>
+              <a href="/solutions/projects?sector=<%= project.sector %>" class="btn btn-xs btn-primary">
+                <%= project.sector %>
+              </a>
+            </td>
+            <td><%= project.summary_short %></td>
+            <td>
+              <a href="/solutions/projects/<%= project.id %>" class="btn btn-xs btn-secondary">
+                Details
+              </a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Climate Solutions</title>
+  <link href="/css/main.css" rel="stylesheet">
+</head>
+<body class="bg-base-100 text-base-content">
+  <!-- Include Navbar Partial -->
+  <%- include('partials/navbar', {page: ''}) %>
+
+  <!-- Hero Section -->
+  <div class="hero min-h-screen bg-base-200">
+    <div class="hero-content text-center">
+      <div class="max-w-md">
+        <h1 class="text-9xl font-bold">404</h1>
+        <p class="py-6 text-xl">Page Not Found</p>
+        <a href="/" class="btn btn-primary">Return Home</a>
+        <div class="mt-4 text-sm opacity-75">
+          <p id="studentInfo"></p>
+          <p id="timestamp"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Display student information and timestamp
+    document.addEventListener("DOMContentLoaded", () => {
+      const studentInfo = document.getElementById('studentInfo');
+      const timestamp = document.getElementById('timestamp');
+
+      // Fetch headers from the server
+      fetch(window.location.href, { method: 'HEAD' })
+        .then(response => {
+          const studentName = response.headers.get('X-Student-Name');
+          const studentId = response.headers.get('X-Student-ID');
+          const errorTimestamp = response.headers.get('X-Timestamp');
+
+          if (studentName && studentId) {
+            studentInfo.textContent = `${studentName} - ${studentId}`;
+          } else {
+            studentInfo.textContent = "Student information not available";
+          }
+
+          if (errorTimestamp) {
+            timestamp.textContent = `Error occurred at: ${new Date(errorTimestamp).toLocaleString()}`;
+          } else {
+            timestamp.textContent = "Timestamp not available";
+          }
+        })
+        .catch(error => {
+          console.error("Error fetching headers:", error);
+          studentInfo.textContent = "Error fetching student information";
+          timestamp.textContent = "Error fetching timestamp";
+        });
+    });
+  </script>
+</body>
+</html>

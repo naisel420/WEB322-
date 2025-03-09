@@ -1,12 +1,12 @@
 /********************************************************************************
-* WEB322 – Assignment 03
+* WEB322 – Assignment 04
 *
 * I declare that this assignment is my own work in accordance with Seneca's
 * Academic Integrity Policy:
 *
 * https://www.senecacollege.ca/about/policies/academic-integrity-policy.html
 *
-* Name: Naisel Varghese Student ID: 167251222 Date: 2025-03-07
+* Name: Naisel Varghese Student ID: 167251222 Date: 2025-03-09
 *
 * Published URL: [Your Vercel URL Here]
 *
@@ -18,24 +18,36 @@ const projectData = require(path.join(__dirname, "modules", "projects.js"));
 const app = express();
 const HTTP_PORT = process.env.PORT || 8080;
 
-// Middleware
+
+app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views');
+
+
 app.use(express.static("public"));
 app.use(express.json());
 
-// Initialize data
+
 projectData.initialize().then(() => {
   console.log("Data initialized successfully");
 }).catch(err => {
   console.error("Failed to initialize data:", err);
 });
 
-// Routes
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "views/home.html"));
+  res.render("home", {
+    studentName: "Naisel Varghese",
+    studentId: "167251222",
+    timestamp: new Date()
+  });
 });
 
 app.get("/about", (req, res) => {
-  res.sendFile(path.join(__dirname, "views/about.html"));
+  res.render("about", {
+    studentName: "Naisel Varghese",
+    studentId: "167251222",
+    timestamp: new Date()
+  });
 });
 
 app.get("/solutions/projects", (req, res) => {
@@ -48,18 +60,27 @@ app.get("/solutions/projects", (req, res) => {
 
   const handleResponse = data => {
     responseData.data = data;
-    res.json(responseData);
+    res.render("projects", { 
+      projects: data, 
+      studentName: responseData.studentName, 
+      studentId: responseData.studentId, 
+      timestamp: responseData.timestamp 
+    });
   };
 
   const handleError = err => {
     responseData.error = err;
-    res.status(404).json(responseData);
+    res.status(404).render("404", { 
+      message: "No projects found for the specified sector.",
+      studentName: responseData.studentName, 
+      studentId: responseData.studentId, 
+      timestamp: responseData.timestamp 
+    });
   };
 
   sector ? projectData.getProjectsBySector(sector).then(handleResponse).catch(handleError)
          : projectData.getAllProjects().then(handleResponse).catch(handleError);
 });
-
 app.get("/solutions/projects/:id", (req, res) => {
   const projectId = parseInt(req.params.id);
   const responseData = {
@@ -69,13 +90,22 @@ app.get("/solutions/projects/:id", (req, res) => {
   };
 
   projectData.getProjectById(projectId)
-    .then(data => {
-      responseData.data = data;
-      res.json(responseData);
+    .then(project => {
+      res.render("project", { 
+        project: project, 
+        studentName: responseData.studentName, 
+        studentId: responseData.studentId, 
+        timestamp: responseData.timestamp 
+      });
     })
     .catch(err => {
       responseData.error = err;
-      res.status(404).json(responseData);
+      res.status(404).render("404", { 
+        message: "Project not found.",
+        studentName: responseData.studentName, 
+        studentId: responseData.studentId, 
+        timestamp: responseData.timestamp 
+      });
     });
 });
 
@@ -88,14 +118,13 @@ app.post("/post-request", (req, res) => {
   });
 });
 
-// 404 Handler
+
 app.use((req, res) => {
-  res.status(404).sendFile(path.join(__dirname, "views/404.html"), {
-    headers: {
-      "X-Student-Name": "Naisel Varghese",
-      "X-Student-ID": "167251222",
-      "X-Timestamp": new Date().toISOString()
-    }
+  res.status(404).render("404", {
+    studentName: "Naisel Varghese",
+    studentId: "167251222",
+    timestamp: new Date(),
+    message: "I'm sorry, we're unable to find what you're looking for."
   });
 });
 
