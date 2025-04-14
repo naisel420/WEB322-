@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Climate Solutions - Register</title>
+  
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .form-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <%- include('partials/navbar', {page: '/register'}) %>
+
+  <div class="form-container">
+    <h1 class="text-2xl font-bold mb-6">Register</h1>
+    
+    <% if(errorMessage) { %>
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+        <%= errorMessage %>
+      </div>
+    <% } %>
+
+    <form method="POST" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-1">User Name</label>
+        <input type="text" name="userName" required 
+               class="w-full px-3 py-2 border rounded">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Email</label>
+        <input type="email" name="email" required 
+               class="w-full px-3 py-2 border rounded">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Password</label>
+        <input type="password" name="password" required 
+               class="w-full px-3 py-2 border rounded">
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Confirm Password</label>
+        <input type="password" name="password2" required 
+               class="w-full px-3 py-2 border rounded">
+      </div>
+
+      <button type="submit" 
+              class="w-full bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">
+        REGISTER
+      </button>
+    </form>
+  </div>
+</body>
+</html>

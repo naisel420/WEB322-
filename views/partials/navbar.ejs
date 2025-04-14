@@ -8,8 +8,43 @@
           <a class="<%= (page == '/about') ? 'active' : '' %>" href="/about">About</a>
         </li>
         <li>
-          <a class="<%= (page == '/solutions/projects') ? 'active' : '' %>" href="/solutions/projects">View Projects</a>
+          <details>
+            <summary class="<%= (page == '/solutions/projects') ? 'active' : '' %>">View Projects</summary>
+            <ul class="p-2 right-0 z-10">
+              <li><a href="/solutions/projects">All Projects</a></li>
+              <li><a href="/solutions/projects?sector=Land+Sinks">Land Sinks</a></li>
+              <li><a href="/solutions/projects?sector=Agriculture">Agriculture</a></li>
+              <li><a href="/solutions/projects?sector=Industry">Industry</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <a class="<%= (page === '/solutions/addProject') ? 'active' : '' %>" href="/solutions/addProject">Add Project</a>
         </li>
       </ul>
     </div>
   </nav>
+
+ 
+<% if (session.user) { %>
+  <li>
+    <details>
+      <summary>Account: <%= session.user.userName %></summary>
+      <ul class="p-2 right-0">
+        <li><a class="<%= (page == '/solutions/addProject') ? 'active' : '' %>" href="/solutions/addProject">Add Project</a></li>
+        <li><a class="<%= (page == '/userHistory') ? 'active' : '' %>" href="/userHistory">User History</a></li>
+        <li><a href="/logout">Log Out</a></li>
+      </ul>
+    </details>
+  </li>
+<% } else { %>
+  <li>
+    <details>
+      <summary>Account</summary>
+      <ul class="p-2 right-0">
+        <li><a class="<%= (page == '/login') ? 'active' : '' %>" href="/login">Login</a></li>
+        <li><a class="<%= (page == '/register') ? 'active' : '' %>" href="/register">Register</a></li>
+      </ul>
+    </details>
+  </li>
+<% } %>

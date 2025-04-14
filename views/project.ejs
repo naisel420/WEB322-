@@ -1,10 +1,11 @@
+require('dotenv').config();
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= project.title %> - Climate Solutions</title>
-  <link href="/css/main.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet">
 </head>
 <body class="bg-base-100 text-base-content">
   
@@ -53,6 +54,9 @@
 
   <script>
     
+    <% if (session.user) { %>
+  <a href="/solutions/editProject/<%= project.id %>" class="btn btn-success">Edit Project</a>
+<% } %>
     document.addEventListener("DOMContentLoaded", () => {
       fetch("https://dummyjson.com/quotes/random")
         .then(response => response.json())

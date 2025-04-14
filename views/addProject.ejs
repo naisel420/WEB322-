@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css" rel="stylesheet">
+</head>
+<body>
+  <%- include('partials/navbar', { page: '/solutions/addProject' }) %>
+
+  <div class="container">
+    <h1>Add Project</h1>
+    <form action="/solutions/addProject" method="POST">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="feature_img_url">Feature Image URL</label>
+        <input type="url" id="feature_img_url" name="feature_img_url" required>
+      </div>
+
+      <div class="form-group">
+        <label for="sector_id">Sector</label>
+        <select id="sector_id" name="sector_id" required>
+          <% sectors.forEach(sector => { %>
+            <option value="<%= sector.id %>"><%= sector.sector_name %></option>
+          <% }) %>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="intro_short">Short Introduction</label>
+        <textarea id="intro_short" name="intro_short" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="summary_short">Short Summary</label>
+        <textarea id="summary_short" name="summary_short" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="impact">Impact</label>
+        <textarea id="impact" name="impact" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="original_source_url">Original Source URL</label>
+        <input type="url" id="original_source_url" name="original_source_url" required>
+      </div>
+
+      <button type="submit">Add Project</button>
+    </form>
+  </div>
+</body>
+</html>
